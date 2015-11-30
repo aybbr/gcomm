@@ -1,3 +1,8 @@
+After cloning repository 
+- Enable migrations and update database.
+- Restore packages.
+- Install RavenDB.
+
 # Owen's bag of nuget related scripts!
 
 ## migrateToAutomaticPackageRestore.ps1
