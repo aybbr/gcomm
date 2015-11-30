@@ -1,0 +1,115 @@
+﻿@model Data.Models.Search.SearchSummoner
+@{
+    ViewBag.Title = "LeaderBoard";
+    Layout = "~/Views/Shared/_champion.cshtml";
+}
+@{
+    ViewBag.Title = "Summoner Results";
+}
+<div class="container body-content alpha60">
+    <h2>@Html.DisplayTextFor(m => m.SummonerName) stats</h2>
+
+    @{
+        foreach (var summoner in Model.SummonerModels)
+        {
+            <div class="row ">
+                <div class="col-md-5">
+                    <h5>@summoner.SummonerDto.Name</h5>
+                    <p>
+                        <img src="@summoner.ProfileImagePath" alt="@summoner.SummonerDto.Name" />
+                    </p>
+                    <h2>@summoner.SummonerDto.SummonerLevel</h2>
+                    <p>summoner level</p>
+                    @{
+                        var recentGame = summoner.RecentGames.FirstOrDefault();
+                    }
+                    @if (recentGame != null)
+                {
+                        <h2>recent game</h2>
+                        <p>
+                            @if (recentGame.Stats.Win)
+                            {
+                                <span>Won :)</span>
+                            }
+                            else
+                            {
+                                <span>Lost :(</span>
+                            }
+                        </p>
+                        <p><img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/ui/score.png" alt="score" /> @recentGame.Stats.ChampionsKilled / @recentGame.Stats.NumDeaths / @recentGame.Stats.Assists</p>
+                        <p><img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/ui/gold.png" alt="gold" /> @recentGame.Stats.GoldEarned</p>
+                        <p>
+                            <img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/ui/minion.png" alt="minions" /> @recentGame.Stats.MinionsKilled
+                        </p>
+                    }
+                    else
+                    {
+                        <h2>not recent game played</h2>
+                    }
+                </div>
+                <div class="col-md-7">
+                    @if (summoner.LeagueModels != null && summoner.LeagueModels.Count > 0)
+                {
+                    foreach (var leagueModel in summoner.LeagueModels)
+                    {
+                            <div class="col-md-4">
+                                <h4>@leagueModel.LeagueDto.Tier</h4>
+                                <h5>@leagueModel.LeagueName</h5>
+                                <p><img class="tierBadge" src="@Url.Content("~/Content/Assets/Images/Badges/" + @leagueModel.LeagueDto.Tier + "Badge.png")" alt="@leagueModel.LeagueDto.Tier" /></p>
+                                <p>
+                                    team : @leagueModel.LeagueDto.Name
+                                </p>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+
+                        <div class="col-md-4">
+                            <h4>Unranked</h4>
+                            <p>
+                                <img src="/Content/Assets/Images/Badges/UnrankedBadge.png" />
+                            </p>
+                        </div>
+
+                    }
+                </div>
+            </div>
+            <h3>Player Stats</h3>
+                        if (summoner.PlayerStats.PlayerStatSummaries != null)
+                        {
+                            <div class="row">
+                                @foreach (var stat in summoner.PlayerStats.PlayerStatSummaries)
+                                {
+                                    <div class="col-md-4">
+                                        <h4>@stat.PlayerStatSummaryType</h4>
+                                        <p>Wins : @stat.Wins</p>
+                                        <p>Losses : @stat.Losses</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        if (summoner.PlayedChampions != null)
+                        {
+
+                            <h3>Most played champions in ranked matches </h3>
+                            <div class="row">
+                                @foreach (var playedChampion in summoner.PlayedChampions)
+                                {
+                                    <div class="col-md-4">
+                                        <h4>@playedChampion.StaticChampion.Name</h4>
+                                        <p>
+                                            <img src="@playedChampion.ChampionSpriteImage" alt="@summoner.SummonerDto.Name" />
+                                        </p>
+                                        <p><img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/ui/score.png" alt="score" /> @playedChampion.RankedStats.TotalChampionKills/@playedChampion.RankedStats.MaxNumDeaths/@playedChampion.RankedStats.TotalAssists
+                                        <p><img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/ui/gold.png" alt="gold" /> @playedChampion.RankedStats.TotalGoldEarned</p>
+                                        <p><img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/ui/minion.png" alt="minions" /> @playedChampion.RankedStats.TotalMinionKills </p>
+                                        <p>matches played : @playedChampion.RankedStats.TotalSessionsPlayed</p>
+                                    </div>
+                                }
+                            </div>
+                            }
+                        }
+    }
+    div>
+</div>

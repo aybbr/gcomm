@@ -1,0 +1,28 @@
+﻿@model RiotApi.Net.RestClient.Dto.LolStaticData.Champion.ChampionDto
+
+<div id="chartContainer" style="padding-top: 7px; height: 250px; width: 100%;" class="alpha60"></div>
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer",
+            {
+                animationEnabled: true,
+                title: {
+                    text: "Champion's Skills Chart"
+                },
+                data: [
+                {
+                    type: "bar", //change type to bar, line, area, pie, etc
+                    dataPoints: [
+                        { label: "Attack", y: @Model.Info.Attack, color: "#FF4D4D" },
+                        { label: "Defense", y: @Model.Info.Defense, color: "#5CB8E6" },
+                        { label: "Magic", y: @Model.Info.Magic },
+                        { label: "Difficulty", y: @Model.Info.Difficulty }
+                    ]
+                }
+                ]
+            });
+            chart.render();
+        }
+    </script>

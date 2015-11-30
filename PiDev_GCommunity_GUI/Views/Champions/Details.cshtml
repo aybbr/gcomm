@@ -1,0 +1,66 @@
+﻿@using PiDev_GCommunity_GUI.Helpers
+@using RiotApi.Net.RestClient.Helpers
+@model Data.Models.ChampionsModel.ChampionModel
+
+@{
+    ViewBag.Title = "Champions";
+    Layout = "~/Views/Shared/_champion.cshtml";
+}
+@section headerscripts{
+    @Scripts.Render("~/bundles/canvas")
+}
+
+
+<style>
+    body
+    {
+        background-image: url('@Model.SplashImage') !important;
+        background-attachment: fixed;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="champname">
+            <h1> @Model.StaticChampionDto.Name</h1>
+            <img src="@Model.ChampionImage" alt="@Model.StaticChampionDto.Name" />
+        </div>
+    </div>
+    <div class="col-md-8">
+        @Html.Partial("ChampionChart", Model.StaticChampionDto)
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Details", "Champions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-inline", role = "form" }))
+        {
+            @Html.HiddenFor(m => m.Region)
+            @Html.HiddenFor(m => m.ChampionId)
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.CurrentSkinId, new SelectList(Model.StaticChampionDto.Skins, "Num", "Name"), new { @class = "form-control", onchange = "this.form.submit();" })
+            </div>
+
+            <div class="form-group">
+                @Html.ValidationMessageFor(m => m.Region, "", new { @class = "text-danger" })
+            </div>
+        }
+    </div>
+</div>
+<br />
+
+<div class="row alpha60">
+    <div class=" col-md-4">
+        <img src="@Model.LoadingImage" alt="@Model.StaticChampionDto.Name" />
+    </div>
+    <div class=" grid3">
+        <div class="welcome-info"><h3>Lore</h3></div>
+        
+        <div class="loretext"> <p class="lead">@Html.Raw(Model.StaticChampionDto.Lore)</p></div>
+        
+    </div>
+</div>
+
+
+
