@@ -37,7 +37,8 @@
                     @Html.DisplayFor(modelItem => item.datePost)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.img)
+                    <img src="@Url.Content("~/Upload/")@Html.DisplayFor(modelItem => item.img)"  height="120" width="120"/>
+                    @*@Html.DisplayFor(modelItem => item.img)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.name)

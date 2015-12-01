@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace PiDev_GCommunity_GUI.Controllers
 {
@@ -32,12 +33,19 @@ namespace PiDev_GCommunity_GUI.Controllers
 
         // POST: Model3D/Create
         [HttpPost]
-        public ActionResult Create(model3d m)
+        public ActionResult Create(model3d m, HttpPostedFileBase ImageId)
         {
             try
             {
                 IModel3DService test = new Model3DServices();
+                m.datePost = DateTime.Now;
+                m.img = ImageId.FileName;
+                
+                
                 test.Add(m);
+                
+                var path = Path.Combine(Server.MapPath("~/Upload/"), ImageId.FileName);
+                ImageId.SaveAs(path);
 
                 return RedirectToAction("Index");
             }
