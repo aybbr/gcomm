@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_champion.cshtml";
+
+}
+
+<!DOCTYPE html>
+    <div class="information">
+          
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+                                Sponsoring
+                                <small> Offers </small>
+                            </h1>
+
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Advanced Tables -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="dataTables_length" id="dataTables-example_length">
+                                            </div>
+                                            </div>
+                                        <div class="col-sm-6">
+
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th>Offer</th>
+                                                    <th>Description</th>
+                                                    <th>Priority</th>
+                                                    <th>Size</th>
+                                                    <th>Duration</th>
+                                                    <th>Fee</th>
+                                                    <th>Inscription</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd gradeX">
+                                                    <td><strong> Primium </strong></td>
+                                                    <td>Best offer ever</td>
+                                                    <td>Highest</td>
+                                                    <td>10%</td>
+                                                    <td>2 weeks</td>
+                                                    <td>150 $</td>
+                                                    <td class="center"><a href="@Url.Action("FormSponsor", "Sponsor")"><i class="fa fa-fw fa-plus-square"></i></a></td>
+                                                </tr>
+                                                <tr class="odd gradeX">
+                                                    <td><strong> Medium </strong></td>
+                                                    <td>Interesting offer</td>
+                                                    <td>Medium</td>
+                                                    <td>6%</td>
+                                                    <td>1 week</td>
+                                                    <td>60$</td>
+                                                    <td class="center"><a href="@Url.Action("FormSponsor", "Sponsor")"><i class="fa fa-fw fa-plus-square"></i></a></td>
+                                                </tr>
+                                                <tr class="odd gradeX">
+                                                    <td><strong> Low </strong></td>
+                                                    <td>Low price</td>
+                                                    <td>Low</td>
+                                                    <td>4%</td>
+                                                    <td>1 week</td>
+                                                    <td>40$</td>
+                                                    <td class="center"><a href="@Url.Action("FormSponsor", "Sponsor")"><i class="fa fa-fw fa-plus-square"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="row"><div class="col-sm-6"><div class="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all"></div></div><div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous"><a href="#">Previous</a></li><li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li><li class="paginate_button next disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a></li></ul></div></div></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--End Advanced Tables -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- DATA TABLE SCRIPTS -->
+        <script src="js/dataTables/jquery.dataTables.js"></script>
+        <script src="js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+        </script>
+
+

@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Statistics";
+    Layout = "~/Views/Shared/_champion.cshtml";
+}
+
+<!DOCTYPE html>
+<div class="information">
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <center>
+                        <h1> Statistics </h1>
+                        <hr />
+                        </center>
+
+</div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                    <tr>
+                                        <th class="alert alert-info">
+                                                Wins
+                                        </th>
+                                        <th class="alert alert-info">
+                                            Losses
+                                        </th>
+                                        <th class="alert alert-info">
+                                            Average Killed
+                                        </th>
+                                        <th class="alert alert-info">
+                                            Total Assists
+                                        </th>
+                                    </tr>
+
+
+                                        <tr>
+                                            <td>
+                                                <p>@ViewBag.sum.Wins</p>
+                                            </td>
+                                            <td>
+                                                <p>@ViewBag.sum.Losses</p>
+                                            </td>
+                                            <td>
+                                                <p>@ViewBag.sum.AggregatedStats.AverageChampionsKilled</p>
+                                            </td>
+                                            <td>
+                                                <p>@ViewBag.sum.AggregatedStats.TotalAssists</p>
+                                            </td>
+                                        </tr>
+                                    
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                    <div>
+                        <button type="button" class="btn btn-sm btn-danger"/><a href="@Url.Action("DownloadActionAsPDF", "matches")">Generate PDF</a>  <span class="glyphicon glyphicon-download"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="js/dataTables/jquery.dataTables.js"></script>
+<script src="js/dataTables/dataTables.bootstrap.js"></script>
+<script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+</script>
+
+
+
+
+
+

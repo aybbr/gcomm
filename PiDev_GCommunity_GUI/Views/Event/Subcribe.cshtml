@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "success";
+    Layout = "~/Views/Shared/_champion.cshtml";
+
+}
+<!DOCTYPE html>
+
+<div class="information">
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Successfully
+                        <small> Booking </small>
+                    </h1>
+
+                </div>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>Well done!</strong> You are successfully subscribed to this event ! please consult your mailbox . An invitation was sent to you.
+            </div>
+            <center>
+                <div class="form-group">
+
+                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+                        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+
+
+
+                </div>
+            </center>
+        </div>
+</div>
+</div>
