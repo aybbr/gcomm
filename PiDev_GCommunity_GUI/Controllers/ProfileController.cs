@@ -31,6 +31,12 @@ namespace PiDev_GCommunity_GUI.Controllers
             var aaaa = tester.GetMany(m => m.email == mail);
             
             var a = tester.GetById(aaaa.First().Id);
+
+            IRiotClient riotClient = new RiotClient("f5e474de-885a-477a-8b74-fa16f5915741");
+
+           var cham = riotClient.LolStatus.GetShardStatusByRegion(RiotApiConfig.Regions.EUW).Services.First();
+            
+            ViewBag.statut = cham.Status.ToString();
             return View(a);
         }
 
