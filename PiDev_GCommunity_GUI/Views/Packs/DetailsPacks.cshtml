@@ -1,0 +1,98 @@
+﻿@model Domain.Entities.pack
+
+@{
+    ViewBag.Title = "DetailsPacks";
+    Layout = "~/Views/Shared/_champion.cshtml";
+}
+<script type="text/javascript">
+    var PAYMILL_PUBLIC_KEY = '2691903932397907285589c7646e3e14';
+</script>
+<script type="text/javascript" src="https://bridge.paymill.com/"></script>
+<h2>DetailsPacks</h2>
+<div class="game-grid-left">
+    <div class="grid1">
+        
+        <a href="single.html"><img src="~/ImagePacks/@(Model.id).png" class="img-responsive" alt="" /></a>
+        <div class="grid1-info">
+            <h4>Details</a></h4>
+            <p>@Model.name</p>
+            <p>Category:  @Model.category</p>
+        </div>
+        <div class="more">
+            <!-- START FORM  -->
+            <form id="payment-form" action="payment.php" method="POST">
+                <div id="payment_errors">&nbsp;</div>
+                <div class="credit-card-input no-js" id="skeuocard">
+
+                    <label for="cc_type">Card Type</label>
+                    <select id="cc_type">
+                        <option value="">...</option>
+                        <option value="visa">Visa</option>
+                        <option value="discover">Discover</option>
+                        <option value="mastercard">MasterCard</option>
+                        <option value="maestro">Maestro</option>
+                        <option value="jcb">JCB</option>
+                        <option value="unionpay">China UnionPay</option>
+                        <option value="amex">American Express</option>
+                        <option value="dinersclubintl">Diners Club</option>
+                    </select>
+                    <label for="cc_number">Card Number</label>
+                    <input type="text" id="cc_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19">
+                    <label for="cc_exp_month">Expiration Month</label>
+                    <input type="text" id="cc_exp_month" placeholder="00">
+                    <label for="cc_exp_year">Expiration Year</label>
+                    <input type="text" id="cc_exp_year" placeholder="00">
+                    <label for="cc_name">Cardholder's Name</label>
+                    <input type="text" id="cc_name" placeholder="Your Name">
+                    <label for="cc_cvc">Card Validation Code</label>
+                    <input type="text" id="cc_cvc" placeholder="123" maxlength="3" size="3">
+                </div>
+              
+            </form>
+            <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+            <script src="javascripts/skeuocard.js"></script>
+            <script>
+            card = new Skeuocard($("#skeuocard"), {
+                typeInputSelector: '[id="cc_type"]',
+                numberInputSelector: '[id="cc_number"]',
+                expMonthInputSelector: '[id="cc_exp_month"]',
+                expYearInputSelector: '[id="cc_exp_year"]',
+                nameInputSelector: '[id="cc_name"]',
+                cvcInputSelector: '[id="cc_cvc"]'
+            });
+
+            function PaymillResponseHandler(error, result) {
+                if (error) {
+                    $("#payment_errors").text(error.apierror);
+                    $("#payment_errors").css("display");
+                } else {
+                    $("#payment_errors").css("display", "none");
+                    $("#payment_errors").text("");
+                    var form = $("#payment-form");
+                    // Token
+                    var token = result.token;
+                    form.append("<input type='hidden' name='paymillToken' value='" + token + "'/>");
+                    form.get(0).submit();
+                }
+            }
+
+            $("#paymill-submit-button").click(function() {
+                var params = {
+                    amount_int: 100, // E.g. "15" for 0.15 Eur
+                    currency: 'EUR', // ISO 4217 e.g. "EUR"
+                    number: $('#cc_number').val(),
+                    exp_month: $('#cc_exp_month').val(),
+                    exp_year: $('#cc_exp_year').val(),
+                    cardholder: $('#cc_name').val(),
+                    cvc: $('#cc_cvc').val()
+                };
+                paymill.createToken(params, PaymillResponseHandler);
+            });
+            </script>
+            <a href='@Url.Action("ExportPDF", "Packs")'>Buy</a>
+  
+
+
+        </div>
+    </div>
+</div>

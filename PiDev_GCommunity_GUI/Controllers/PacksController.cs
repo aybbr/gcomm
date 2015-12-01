@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Rotativa;
 
 namespace PiDev_GCommunity_GUI.Controllers
 {
@@ -13,13 +14,32 @@ namespace PiDev_GCommunity_GUI.Controllers
         // GET: Packs
         public ActionResult Index()
         {
-            return View();
+            PacksService PS = new PacksService();
+            List<pack> maListe = PS.getAllPacks();
+
+          
+            return View(maListe);
+        }
+        public ActionResult AllPacks(string searchString)
+        {
+            PacksService PS = new PacksService();
+            List<pack> maListe = PS.getAllPacks();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                maListe = maListe.Where(p => p.name.Contains(searchString)).ToList();
+            }
+
+
+            return View(maListe);
         }
 
         // GET: Packs/Details/5
-        public ActionResult Details(int id)
+        public ActionResult DetailsPacks(int id)
         {
-            return View();
+            PacksService PS = new PacksService();
+            pack p = PS.GetPackById(id);
+            return View(p);
         }
 
         // GET: Packs/Create
@@ -88,6 +108,38 @@ namespace PiDev_GCommunity_GUI.Controllers
             {
                 return View();
             }
+        }
+
+        // GET: Packs/Details/5
+        public ActionResult Bill(int id)
+        {
+            PacksService PS = new PacksService();
+            pack p = PS.GetPackById(id);
+            return View(p);
+        }
+
+        public ActionResult ExportPDF()
+        {
+
+           
+            return new ActionAsPdf("AllPacks")
+            {
+                FileName = Server.MapPath("~/Content/Ticket.pdf")
+            };
+        }
+
+        //public ActionResult Invoice(int invoiceId)
+        //{
+        //    var invoiceViewModel;
+        //    // code to retrieve data from a database
+        //    return View(invoiceViewModel);
+        //}
+        public ActionResult PrintInvoice(int invoiceId)
+        {
+            return new ActionAsPdf(
+                           "Invoice",
+                           new { invoiceId = invoiceId })
+            { FileName = "Invoice.pdf" };
         }
     }
 }

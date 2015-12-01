@@ -12,9 +12,9 @@ namespace Service
     public class PacksService : Service<pack>, IPacksService
     {
 
-
-      
-        //public ProductService(IUnitOfWork ut)
+        private static IDatabaseFactory dbf = new DatabaseFactory();
+        public static IUnitOfWork ut = new UnitOfWork(dbf);
+        //public PacksService(IUnitOfWork ut)
         //    : base(ut)
         //{
         //    this.ut = ut;
@@ -26,10 +26,22 @@ namespace Service
             
 
         }
+
+        public List<pack> getAllPacks()
+        {
+            return ut.getRepository<pack>().GetMany().ToList();
+    }
+
+        public pack GetPackById(int id)
+        {
+            return ut.getRepository<pack>().GetById(id);
+        }
     }
 
     public interface IPacksService : IService<pack>
     {
 
     }
+
+    
 }
