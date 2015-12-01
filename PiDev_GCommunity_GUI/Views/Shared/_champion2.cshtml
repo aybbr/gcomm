@@ -92,15 +92,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-    <div id="bgroundd" style="background-image: url(@Url.Content("~/Content/mytemplate/")images/bbg-default.jpg)">
-        @*@Html.Partial("_LogoArea", new Data.Models.Search.SearchSummoner())*@
-
-        @*@Html.Partial("_LoginPartial")*@
-        @RenderSection("headerscripts", required: false)
-        @RenderSection("scripts", required: false)
-        @RenderBody()
-    </div>
-
+                            <div id="bgroundd" style="background-image: url(@Url.Content("~/Content/mytemplate/")images/bbg-default.jpg)">
+                                @*@Html.Partial("_LogoArea", new Data.Models.Search.SearchSummoner())*@
+                                
+                                @*@Html.Partial("_LoginPartial")*@
+                                @RenderSection("headerscripts", required: false)
+                                @RenderSection("scripts", required: false)
+                                @RenderBody()
+                            </div>
 
 
 

@@ -27,10 +27,11 @@ namespace Service
 
 
         }
+       
     }
 
    public interface ISimpleMemberService : IService<simplemember>
     {
-      
+       
    }
 }

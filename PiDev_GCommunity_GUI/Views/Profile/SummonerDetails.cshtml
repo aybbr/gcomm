@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "SummonerDetails";
+    Layout = "~/Views/Shared/_champion.cshtml";
+}
+
+<div class="information">
+    <CENTER><h2>My InGame Informations</h2> </CENTER>
+
+    </br></br></br></br>
+
+    <div>
+
+        <dl class="dl-horizontal" >
+
+    
+
+            <dd>
+                <p>Summoner Level : @ViewBag.sum.SummonerLevel</p>
+               
+            </dd>
+            <dd>
+                </br>
+                <p>
+                    <img src="@ViewBag.icon" alt="icon" />
+                </p>
+</br>
+            </dd>
+            <dd>
+                <p>
+                    @ViewBag.listinfo.Wins</p>
+
+            </dd>
+            <dd>
+                <p>@ViewBag.listinfo.Losses</p>
+
+            </dd>
+     
+            
+
+        </dl>
+    </div>
+   
+
+    
+    </br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+    <p>
+        
+     
+        @Html.ActionLink("Back to Home", "Index")
+    </p>
+</div>
+
+    </div>

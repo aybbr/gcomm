@@ -1,0 +1,114 @@
+﻿@model Domain.Entities.simplemember
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_champion2.cshtml";
+}
+<div class="information">
+    <CENTER><h2>My Profile</h2> </CENTER>
+   
+    </br></br></br></br>
+
+    <div>
+       
+        <dl class="dl-horizontal"style=" float:left">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.surname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.surname)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.username)
+            </dd>
+
+
+
+            <dt>
+                
+                @Html.DisplayNameFor(model => model.xp)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.xp)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.role)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.role)
+            </dd>
+
+
+
+        </dl>
+    </div>
+    <dl class="dl-horizontal"style="width:600px; float:right">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.summonerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.summonerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.server)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.server)
+        </dd>
+
+        
+
+       
+
+        
+
+
+    </dl>
+    </br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+    <p>
+        @Html.ActionLink("Summoner Details", "SummonerDetails", new { name = Model.summonerName }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to Home", "Index")
+    </p>
+</div>
+   
+    </div>
